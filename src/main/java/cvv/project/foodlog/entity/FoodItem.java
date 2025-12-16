@@ -12,6 +12,7 @@ import java.util.List;
 @Table(name = "food_item")
 @Data
 @AllArgsConstructor
+@Builder
 @NoArgsConstructor
 public class FoodItem {
 

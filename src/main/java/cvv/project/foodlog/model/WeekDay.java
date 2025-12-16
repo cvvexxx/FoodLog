@@ -1,5 +1,5 @@
 package cvv.project.foodlog.model;
 
 public enum WeekDay {
-    MO, TU, WE, TH, FR, SA, SU
+    MON, TUE, WED, THU, FRI, SAT, SUN
 }

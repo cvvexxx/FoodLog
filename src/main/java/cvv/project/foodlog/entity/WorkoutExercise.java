@@ -9,7 +9,9 @@ import java.math.BigDecimal;
 @Table(name = "workout_exercise")
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
+@Getter
+@Setter
+@Builder
 public class WorkoutExercise {
 
     @Id

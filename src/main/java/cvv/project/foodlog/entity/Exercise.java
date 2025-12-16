@@ -11,7 +11,8 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "workout_exercise")
+@Builder
+@Table(name = "exercises")
 public class Exercise {
 
     @Id
@@ -20,7 +21,10 @@ public class Exercise {
 
     private String name;
 
-    @OneToMany(mappedBy = "exercise", cascade = CascadeType.ALL, orphanRemoval = true)
+    @Builder.Default
+    @OneToMany(mappedBy = "exercise",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true)
     private List<WorkoutExercise> workoutExercises = new ArrayList<>();
 
     public void setWorkoutExercise(WorkoutExercise workoutExercise) {

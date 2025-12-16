@@ -8,6 +8,7 @@ import java.math.BigDecimal;
 
 @Entity
 @Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "food_intake")

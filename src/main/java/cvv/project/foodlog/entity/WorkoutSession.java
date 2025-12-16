@@ -13,6 +13,8 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
+@Builder
+@ToString(exclude = {"user"})
 public class WorkoutSession {
 
     @Id
@@ -20,17 +22,21 @@ public class WorkoutSession {
     private Long id;
 
     @Enumerated(EnumType.STRING)
+    @Column(name = "week_day")
     private WeekDay weekDay;
 
     @Enumerated(EnumType.STRING)
+    @Column(name = "type")
     private SessionType sessionType;
 
     private Integer duration;
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @Builder.Default
+    @OneToMany(mappedBy = "workoutSession", fetch = FetchType.LAZY)
     private List<WorkoutExercise> workoutExercises = new ArrayList<>();
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
     private User user;
 
     public void setWorkoutExercise(WorkoutExercise workoutExercise) {
