@@ -1,26 +1,27 @@
 package cvv.project.foodlog.entity;
 
-
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigDecimal;
 
 @Entity
-@Table(name = "food_item")
-@Getter
+@Table(name = "workout_exercise")
+@NoArgsConstructor
+@AllArgsConstructor
 @Setter
-public class FoodItem {
+@Getter
+public class WorkoutExercise {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "workout_id")
+    //ToDO
     private Long workoutId;
-
-    @Column(name = "exercise_id")
     private Long exerciseId;
 
     private Integer sets;
