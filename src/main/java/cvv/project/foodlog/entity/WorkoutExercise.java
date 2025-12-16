@@ -1,10 +1,7 @@
 package cvv.project.foodlog.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.math.BigDecimal;
 
@@ -12,8 +9,7 @@ import java.math.BigDecimal;
 @Table(name = "workout_exercise")
 @NoArgsConstructor
 @AllArgsConstructor
-@Setter
-@Getter
+@Data
 public class WorkoutExercise {
 
     @Id

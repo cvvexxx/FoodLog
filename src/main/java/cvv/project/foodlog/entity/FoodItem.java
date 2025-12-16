@@ -2,8 +2,7 @@ package cvv.project.foodlog.entity;
 
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -11,8 +10,9 @@ import java.util.List;
 
 @Entity
 @Table(name = "food_item")
-@Getter
-@Setter
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class FoodItem {
 
     @Id
@@ -30,7 +30,8 @@ public class FoodItem {
     private BigDecimal weight;
     private String notes;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL,
+
+    @OneToMany(mappedBy = "foodItem", cascade = CascadeType.ALL,
             orphanRemoval = true, fetch = FetchType.LAZY)
     private List<FoodIntake> foodIntakes = new ArrayList<>();
 

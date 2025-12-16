@@ -11,16 +11,19 @@ import java.util.List;
 
 
 @Entity
-@Setter
-@Getter
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "users")
+@Builder
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Embedded
+    private UserPersonalInfo PersonalInfo;
 
     @Column(name = "registered_at")
     private Instant registeredAt;
@@ -28,13 +31,13 @@ public class User {
     @Column(name = "calories_amount")
     private Integer caloriesAmount;
 
-    @Embedded
-    private UserPersonalInfo PersonalInfo;
 
+    @Builder.Default
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL,
             orphanRemoval = true, fetch = FetchType.LAZY)
     private List<WorkoutSession> sessions = new ArrayList<>();
 
+    @Builder.Default
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL,
             orphanRemoval = true, fetch = FetchType.LAZY)
     private List<FoodIntake> foodIntakes = new ArrayList<>();
