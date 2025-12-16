@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "food_item")
@@ -27,4 +29,13 @@ public class FoodItem {
     private Integer reps;
     private BigDecimal weight;
     private String notes;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL,
+            orphanRemoval = true, fetch = FetchType.LAZY)
+    private List<FoodIntake> foodIntakes = new ArrayList<>();
+
+    public void setFoodIntakes(FoodIntake foodIntake) {
+        foodIntakes.add(foodIntake);
+        foodIntake.setFoodItem(this);
+    }
 }

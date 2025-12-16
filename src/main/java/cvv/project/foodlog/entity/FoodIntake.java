@@ -1,9 +1,7 @@
 package cvv.project.foodlog.entity;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -30,4 +28,12 @@ public class FoodIntake {
     private BigDecimal fats;
     private BigDecimal carbs;
     private Integer calories;
+
+    @ManyToOne
+    @JoinColumn(name = "food_item_id")
+    private FoodItem foodItem;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 }

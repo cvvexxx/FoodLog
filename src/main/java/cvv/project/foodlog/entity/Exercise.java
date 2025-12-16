@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Entity
@@ -22,4 +24,11 @@ public class Exercise {
 
     private String name;
 
+    @OneToMany(mappedBy = "exercise", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<WorkoutExercise> workoutExercises = new ArrayList<>();
+
+    public void setWorkoutExercise(WorkoutExercise workoutExercise) {
+        workoutExercises.add(workoutExercise);
+        workoutExercise.setExercise(this);
+    }
 }

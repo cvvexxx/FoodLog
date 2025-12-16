@@ -20,9 +20,13 @@ public class WorkoutExercise {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    //ToDO
-    private Long workoutId;
-    private Long exerciseId;
+    @ManyToOne
+    @JoinColumn(name = "workout_id")
+    private WorkoutSession workoutSession;
+
+    @ManyToOne
+    @JoinColumn(name = "exercise_id")
+    private Exercise exercise;
 
     private Integer sets;
     private Integer reps;
