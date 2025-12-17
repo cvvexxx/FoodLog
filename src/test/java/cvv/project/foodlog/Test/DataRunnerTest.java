@@ -23,11 +23,7 @@ public class DataRunnerTest {
 
 
             Long userId;
-            Long workoutId;
-            Long exerciseId;
-            Long weId;
 
-            // ---------- persist ----------
             try (Session session = sf.openSession()) {
                 session.beginTransaction();
 
@@ -76,16 +72,20 @@ public class DataRunnerTest {
                 session.getTransaction().commit();
 
                 userId = user.getId();
-                workoutId = workout.getId();
-                exerciseId = bench.getId();
-                weId = we.getId();
             }
 
-            // ---------- load & assert ----------
             try (Session session = sf.openSession()) {
+                session.beginTransaction();
+
                 User loadedUser = session.find(User.class, userId);
                 assertNotNull(loadedUser);
                 assertEquals("Ivan", loadedUser.getPersonalInfo().getName());
+                loadedUser.getPersonalInfo().setName("Artem");
+                session.merge(loadedUser);
+
+                session.getTransaction().commit();
+                loadedUser = session.find(User.class, userId);
+                assertEquals("Artem", loadedUser.getPersonalInfo().getName());
 
                 assertEquals(1, loadedUser.getSessions().size());
                 WorkoutSession loadedWorkout = loadedUser.getSessions().get(0);
