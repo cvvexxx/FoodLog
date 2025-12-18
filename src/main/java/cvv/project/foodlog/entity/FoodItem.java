@@ -20,17 +20,14 @@ public class FoodItem {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "workout_id")
-    private Long workoutId;
+    private String name;
 
-    @Column(name = "exercise_id")
-    private Long exerciseId;
+    private Integer weight;
 
-    private Integer sets;
-    private Integer reps;
-    private BigDecimal weight;
-    private String notes;
-
+    private BigDecimal protein;
+    private BigDecimal fats;
+    private BigDecimal carbs;
+    private Integer calories;
 
     @OneToMany(mappedBy = "foodItem", cascade = CascadeType.ALL,
             orphanRemoval = true, fetch = FetchType.LAZY)
